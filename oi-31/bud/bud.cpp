@@ -5,10 +5,10 @@ using namespace std;
 
 /*
 5 1
-.X...
-.X.XX
-XX...
 .....
+.X.XX
+X....
+.X...
 .X.X.
 */
 
@@ -49,18 +49,19 @@ int main()
     vector<position> temp = {};
     if (m == 1)
     {
+        int longest = 0;
+
         // Horizontal
         for (int i = 0; i < n; i++)
         {
             temp.clear();
             for (int j = 0; j < n; j++)
             {
-                cout << "\tTEMP_SIZE: " << temp.size() << endl;
-                if (temp.size() + 1 == n)
-                {
-                    cout << "RETURNING: " << temp.size() + 1;
-                    return temp.size() + 1;
-                }
+                // if (temp.size() == n)
+                // {
+                //     cout << "1RETURNING: " << temp.size();
+                //     return temp.size();
+                // }
 
                 if (airport[i][j] == 0)
                 {
@@ -68,11 +69,18 @@ int main()
                 }
                 else
                 {
-                    posibilities[temp.size() - 1].push_back(temp);
+                    if (temp.size() > longest)
+                    {
+                        longest = temp.size();
+                    }
                     temp.clear();
                 }
             }
-            posibilities[temp.size() - 1].push_back(temp);
+
+            if (temp.size() > longest)
+            {
+                longest = temp.size();
+            }
         }
 
         // Vertical
@@ -81,12 +89,11 @@ int main()
             temp.clear();
             for (int j = 0; j < n; j++)
             {
-                cout << "\tTEMP_SIZE: " << temp.size() << endl;
-                if (temp.size() + 1 == n)
-                {
-                    cout << "RETURNING: " << temp.size() + 1;
-                    return temp.size() + 1;
-                }
+                // if (temp.size() == n)
+                // {
+                //     cout << "2RETURNING: " << temp.size();
+                //     return temp.size();
+                // }
 
                 if (airport[j][i] == 0)
                 {
@@ -94,12 +101,22 @@ int main()
                 }
                 else
                 {
-                    posibilities[temp.size() - 1].push_back(temp);
+                    if (temp.size() > longest)
+                    {
+                        longest = temp.size();
+                    }
                     temp.clear();
                 }
             }
-            posibilities[temp.size() - 1].push_back(temp);
+
+            if (temp.size() > longest)
+            {
+                longest = temp.size();
+            }
         }
+
+        cout << "RETURNING: longest = " << longest;
+        return longest;
     }
     else
     {
