@@ -38,25 +38,51 @@ int main()
     vector<vector<position>> posibilities[n] = {};
 
     vector<position> temp = {};
-    // // if (m == 1) {
-    for (int i = 0; i < n; i++)
+    if (m == 1)
     {
-        temp.clear();
-        for (int j = 0; j < n; j++)
+        for (int i = 0; i < n; i++)
         {
-            if (airport[i][j] == 0)
+            temp.clear();
+            for (int j = 0; j < n; j++)
             {
-                temp.push_back({j, i, airport[i][j]});
+                if (temp.size() == n)
+                {
+                    return n;
+                }
+
+                if (airport[i][j] == 0)
+                {
+                    temp.push_back({j, i, airport[i][j]});
+                }
+                else
+                {
+                    posibilities[temp.size() - 1].push_back(temp);
+                    temp.clear();
+                }
             }
-            else
-            {
-                posibilities[temp.size() - 1].push_back(temp);
-                temp.clear();
-            }
+            posibilities[temp.size() - 1].push_back(temp);
         }
-        posibilities[temp.size() - 1].push_back(temp);
     }
-    // }
+    else
+    {
+        for (int i = 0; i < n; i++)
+        {
+            temp.clear();
+            for (int j = 0; j < n; j++)
+            {
+                if (airport[i][j] == 0)
+                {
+                    temp.push_back({j, i, airport[i][j]});
+                }
+                else
+                {
+                    posibilities[temp.size() - 1].push_back(temp);
+                    temp.clear();
+                }
+            }
+            posibilities[temp.size() - 1].push_back(temp);
+        }
+    }
 
     cout << "\n---- POSIBILITIES ----\n";
     for (int i = 0; i < n; i++)
