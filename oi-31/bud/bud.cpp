@@ -3,6 +3,15 @@
 
 using namespace std;
 
+/*
+5 1
+.X...
+.X.XX
+XX...
+.....
+.X.X.
+*/
+
 int main()
 {
     int n, m;
@@ -40,19 +49,48 @@ int main()
     vector<position> temp = {};
     if (m == 1)
     {
+        // Horizontal
         for (int i = 0; i < n; i++)
         {
             temp.clear();
             for (int j = 0; j < n; j++)
             {
-                if (temp.size() == n)
+                cout << "\tTEMP_SIZE: " << temp.size() << endl;
+                if (temp.size() + 1 == n)
                 {
-                    return n;
+                    cout << "RETURNING: " << temp.size() + 1;
+                    return temp.size() + 1;
                 }
 
                 if (airport[i][j] == 0)
                 {
                     temp.push_back({j, i, airport[i][j]});
+                }
+                else
+                {
+                    posibilities[temp.size() - 1].push_back(temp);
+                    temp.clear();
+                }
+            }
+            posibilities[temp.size() - 1].push_back(temp);
+        }
+
+        // Vertical
+        for (int i = 0; i < n; i++)
+        {
+            temp.clear();
+            for (int j = 0; j < n; j++)
+            {
+                cout << "\tTEMP_SIZE: " << temp.size() << endl;
+                if (temp.size() + 1 == n)
+                {
+                    cout << "RETURNING: " << temp.size() + 1;
+                    return temp.size() + 1;
+                }
+
+                if (airport[j][i] == 0)
+                {
+                    temp.push_back({i, j, airport[j][i]});
                 }
                 else
                 {
