@@ -4,8 +4,8 @@
 using namespace std;
 
 /*
-5 1
-.....
+5 2
+X....
 .X.XX
 X....
 .X...
@@ -49,6 +49,8 @@ int main()
     vector<position> temp = {};
     if (m == 1)
     {
+        cout << "---- M == 1 ----\n";
+
         int longest = 0;
 
         // Horizontal
@@ -120,6 +122,9 @@ int main()
     }
     else
     {
+        cout << "---- M != 1 ----\n";
+
+        // Horizontal
         for (int i = 0; i < n; i++)
         {
             temp.clear();
@@ -129,13 +134,38 @@ int main()
                 {
                     temp.push_back({j, i, airport[i][j]});
                 }
-                else
+                else if (temp.size() > 0)
                 {
                     posibilities[temp.size() - 1].push_back(temp);
                     temp.clear();
                 }
             }
-            posibilities[temp.size() - 1].push_back(temp);
+            if (temp.size() > 0)
+            {
+                posibilities[temp.size() - 1].push_back(temp);
+            }
+        }
+
+        // Vertical
+        for (int i = 0; i < n; i++)
+        {
+            temp.clear();
+            for (int j = 0; j < n; j++)
+            {
+                if (airport[j][i] == 0)
+                {
+                    temp.push_back({i, j, airport[j][i]});
+                }
+                else if (temp.size() > 0)
+                {
+                    posibilities[temp.size() - 1].push_back(temp);
+                    temp.clear();
+                }
+            }
+            if (temp.size() > 0)
+            {
+                posibilities[temp.size() - 1].push_back(temp);
+            }
         }
     }
 
