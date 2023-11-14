@@ -13,6 +13,12 @@ int main()
 
     std::cin >> n >> m;
 
+    if (m < n || m > n * n)
+    {
+        std::cout << "NIE\n";
+        return 0;
+    }
+
     int buttons_board[n][n];
     std::fill(&buttons_board[0][0], &buttons_board[0][0] + n * n, 0);
     int buttons_list[m][2];
@@ -27,10 +33,25 @@ int main()
         buttons_list[i][1] = b - 1;
     }
 
+    // for (i = 0; i < m; i++)
+    // {
+
+    // }
+
     std::cout << "--- buttons_list ---\n";
     for (i = 0; i < m; i++)
     {
         std::cout << buttons_list[i][0] + 1 << " " << buttons_list[i][1] + 1 << std::endl;
+    }
+
+    if (m == n * n)
+    {
+        std::cout << "TAK\n";
+        for (i = 0; i < m; i++)
+        {
+            std::cout << buttons_list[i][0] + 1 << " " << buttons_list[i][1] + 1 << std::endl;
+        }
+        return 0;
     }
 
     std::cout << "--- buttons_board ---\n";
