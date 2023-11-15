@@ -183,6 +183,43 @@ int main()
         }
     }
 
+    bool isPossible = true;
+    vector<vector<position>> finalPosibilities = {};
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        cout << "i: " << i << endl;
+        if (posibilities[i].size() > 1)
+        {
+            for (int j = 0; j < posibilities[i].size(); j++)
+            {
+                for (int k = 0; k < posibilities[i][j].size() - 1; k++)
+                {
+                    int x = posibilities[i][j][k].x;
+                    int y = posibilities[i][j][k].y;
+
+                    for (int l = k + 1; l < posibilities[i][j].size(); l++)
+                    {
+                        if (posibilities[i][j][l].x == x && posibilities[i][j][l].y == y)
+                        {
+                            isPossible = false;
+                            cout << "bylo" << endl;
+                            break;
+                        }
+                    }
+                    cout << "nie bylo: isPossible = " << isPossible << endl;
+                    if (isPossible)
+                    {
+                        cout << "Returning!" << endl
+                             << i + 1 << endl;
+                        return 0;
+                    }
+                }
+            }
+        }
+        cout << endl;
+    }
+
     cout << "\n---- AIRPORT ----\n";
     for (int i = 0; i < n; i++)
     {
