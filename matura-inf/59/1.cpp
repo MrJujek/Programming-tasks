@@ -3,11 +3,9 @@
 #include <vector>
 #include <set>
 #include <string>
+#include <array>
 
 using namespace std;
-
-int n = 1000;
-vector<bool> isPrime(n, true);
 
 int rozklad(int x)
 {
@@ -40,6 +38,33 @@ bool czyPalindrom(string s)
     return true;
 }
 
+int mocLiczby(int number)
+{
+    int moc = 0;
+
+    string s = to_string(number);
+
+    array<int, 9> arr = {};
+
+    for (int i = 0; i < s.size(); i++)
+    {
+        arr[i] = s[i] - '0';
+    }
+
+    if (s.size() == 1)
+    {
+        return 0;
+    }
+
+    int result = arr[0];
+    for (int i = 1; i < s.size(); i++)
+    {
+        result *= arr[i];
+    }
+
+    return mocLiczby(result) + 1;
+}
+
 int main()
 {
     fstream file;
@@ -53,28 +78,6 @@ int main()
         file >> number;
         numbers.push_back(number);
     }
-
-    for (int i = 0; i < 1000; i++)
-    {
-        cout << numbers[i] << endl;
-    }
-
-    isPrime[1] = false;
-    isPrime[2] = true;
-
-    for (int i = 2; i < n; i++)
-    {
-        if (isPrime[i])
-        {
-            for (int j = i * i; j < n; j += i)
-            {
-                isPrime[j] = false;
-            }
-        }
-    }
-
-    cout << endl
-         << isPrime[16] << endl;
 
     int result1 = 0;
 
@@ -110,6 +113,25 @@ int main()
     }
 
     cout << "Result 2: " << result2 << endl;
+
+    int max = numbers[0];
+    int min = numbers[0];
+    for (int i = 0; i < 1000; i++)
+    {
+        if (mocLiczby(numbers[i]) == 1)
+        {
+            if (numbers[i] > max)
+            {
+                max = numbers[i];
+            }
+            else if (numbers[i] < min)
+            {
+                min = numbers[i];
+            }
+        }
+    }
+    cout << "Result3\nmin: " << min << endl
+         << "max: " << max << endl;
 
     return 0;
 }
