@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -11,6 +12,42 @@ X....
 .X...
 .X.X.
 */
+
+struct position
+{
+    int x;
+    int y;
+    int value;
+};
+
+bool operator==(const position &a, const position &b)
+{
+    return a.x == b.x && a.y == b.y;
+}
+
+bool check_no_common_points(std::vector<std::vector<position>> arr)
+{
+    for (int i = 0; i < arr.size(); i++)
+    {
+        for (int j = i + 1; j < arr.size(); j++)
+        {
+            bool common_points = false;
+            for (auto &point1 : arr[i])
+            {
+                if (std::find(arr[j].begin(), arr[j].end(), point1) != arr[j].end())
+                {
+                    common_points = true;
+                    break;
+                }
+            }
+            if (!common_points)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 int main()
 {
@@ -36,13 +73,6 @@ int main()
     }
 
     cout << "---- END OF INPUT ----\n";
-
-    struct position
-    {
-        int x;
-        int y;
-        int value;
-    };
 
     vector<vector<position>> posibilities[n] = {};
 
@@ -183,41 +213,20 @@ int main()
         }
     }
 
-    bool isPossible = true;
-    vector<vector<position>> finalPosibilities = {};
-
     for (int i = n - 1; i >= 0; i--)
     {
-        cout << "i: " << i << endl;
         if (posibilities[i].size() > 1)
         {
-            for (int j = 0; j < posibilities[i].size(); j++)
-            {
-                for (int k = 0; k < posibilities[i][j].size() - 1; k++)
-                {
-                    int x = posibilities[i][j][k].x;
-                    int y = posibilities[i][j][k].y;
+            cout << "i: " << i + 1 << ", posibilities[i].size(): " << posibilities[i].size() << endl;
 
-                    for (int l = k + 1; l < posibilities[i][j].size(); l++)
-                    {
-                        if (posibilities[i][j][l].x == x && posibilities[i][j][l].y == y)
-                        {
-                            isPossible = false;
-                            cout << "bylo" << endl;
-                            break;
-                        }
-                    }
-                    cout << "nie bylo: isPossible = " << isPossible << endl;
-                    if (isPossible)
-                    {
-                        cout << "Returning!" << endl
-                             << i + 1 << endl;
-                        return 0;
-                    }
-                }
+            std::cout << (check_no_common_points(posibilities[i]) ? "True" : "False") << std::endl;
+
+            if (check_no_common_points(posibilities[i]))
+            {
+                cout << "RETURNING: " << i + 1;
+                return i + 1;
             }
         }
-        cout << endl;
     }
 
     cout << "\n---- AIRPORT ----\n";
