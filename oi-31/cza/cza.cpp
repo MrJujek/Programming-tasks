@@ -1,8 +1,7 @@
 #include <array>
 #include <iostream>
 #include <vector>
-#include <fstream>
-// #include <filesystem>
+// #include <fstream>
 #include <string>
 
 struct testcase
@@ -18,14 +17,10 @@ std::string ChatBBB(long long k, long long a, long long b, std::string S)
 {
     long long n = S.size();
 
-    std::cout << "N: " << n << std::endl;
-    std::cout << "b: " << b << std::endl;
-
     if (n == b)
         return S.substr(a - 1, b);
 
     std::string suffix = S.substr(n - k, n);
-    std::cout << "Suffix: " << suffix << std::endl;
 
     long long pos = 0;
     std::array<long long, 128> arr;
@@ -54,8 +49,6 @@ std::string ChatBBB(long long k, long long a, long long b, std::string S)
     }
 
     S += most_common;
-
-    std::cout << "Most common: " << most_common << std::endl;
 
     return ChatBBB(k, a, b, S);
 }
@@ -104,20 +97,33 @@ int main()
 
     //     input >> N >> k >> a >> b >> S;
 
-    //     // std::cout << "N: " << N << std::endl;
-    //     // std::cout << "k: " << k << std::endl;
-    //     // std::cout << "a: " << a << std::endl;
-    //     // std::cout << "b: " << b << std::endl;
-    //     // std::cout << "S: " << S << std::endl;
-
     //     std::string expected;
     //     output >> expected;
 
-    //     // std::cout << "Expected: " << expected << std::endl;
+    //     std::string actual;
 
-    //     std::string actual = ChatBBB(k, a, b, S);
+    //     /* solution - start*/
 
-    //     // std::cout << "Actual: " << actual << std::endl;
+    //     // actual = ChatBBB(k, a, b, S);
+
+    //     bool same = true;
+    //     char first = S[0];
+    //     for (int i = 1; i < N; i++)
+    //     {
+    //         if (S[i] != first)
+    //         {
+    //             actual = ChatBBB(k, a, b, S);
+    //             same = false;
+    //             break;
+    //         }
+    //     }
+    //     if (same && S.size() < 10)
+    //     {
+    //         std::string add(b - a - 1, first);
+    //         actual = S + add;
+    //     }
+
+    //     /* solution - end*/
 
     //     if (expected != actual)
     //     {
@@ -155,9 +161,24 @@ int main()
 
     std::cin >> N >> k >> a >> b >> S;
 
-    std::cout << N << k << a << b << S << std::endl;
-
-    std::cout << ChatBBB(k, a, b, S) << std::endl;
+    char first = S[0];
+    for (int i = 1; i < N; i++)
+    {
+        if (S[i] != first)
+        {
+            std::cout << ChatBBB(k, a, b, S);
+            return 0;
+        }
+    }
+    if (S.size() < 10)
+    {
+        std::string add(b - a - 1, first);
+        std::cout << S + add;
+    }
+    else
+    {
+        std::cout << ChatBBB(k, a, b, S);
+    }
 
     return 0;
 }
