@@ -45,11 +45,26 @@ int main()
     sort(lectureList.begin(), lectureList.end(), [](lecture a, lecture b)
          { return a.end < b.end; });
 
-    vector<array<int, 2>> choosedLectures = {{minIndex, minIndex + 1}};
+    vector<array<int, 2>> choosedLectures = {{lectureList[0].id, lectureList[1].id}};
 
-    for (int i = minIndex; i < k; i++)
+    // Initialize the end time of the last added lecture
+    int lastEndTime = lectureList[0].end;
+
+    // Initialize the end time of the last added lecture
+    int lastEndTime = -1;
+
+    // Start from the first lecture
+    for (int i = 0; i < k; i++)
     {
-        choosedLectures.push_back({lectureList[i].id, lectureList[i + 1].id});
+        // If the start time of the current lecture is not before the end time of the last added lecture
+        if (lectureList[i].start >= lastEndTime)
+        {
+            // Add the current lecture to the choosedLectures list
+            choosedLectures.push_back(lectureList[i].id);
+
+            // Update the end time of the last added lecture
+            lastEndTime = lectureList[i].end;
+        }
     }
 
     cout << "---- END OF INPUT ----\n";
@@ -61,10 +76,10 @@ int main()
 
     cout << "---- END OF LECTURE LIST ----\n";
 
-    // sort(lectureList.begin(), lectureList.end(), compareByEnd);
-
-    // cout << "minEnd: " << minVal << "\n";
-    // cout << "minIndex: " << minIndex << "\n";
+    for (const auto &pair : choosedLectures)
+    {
+        cout << "Lecture Pair: " << pair[0] << ", " << pair[1] << "\n";
+    }
 
     return 0;
 }
