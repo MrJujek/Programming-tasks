@@ -1,3 +1,4 @@
+from pydub import AudioSegment
 from gtts import gTTS
 
 # Create a gTTS object
@@ -13,7 +14,13 @@ Jeśli potrzebujesz informacji na temat oferty dla firm wciśnij 2
 Jeśli potrzebujesz innych informacji wciśnij 3
 
 Dziękujemy za telefon i zapraszamy do odkrywania tajemnic nauki z Cogiteon!
-""")
+""", lang='pl', tld='com.pl', slow=False)
 
 # Save the spoken text to an mp3 file
 tts.save('hello.mp3')
+
+audio = AudioSegment.from_mp3('hello.mp3')
+
+audio.speedup(playback_speed=3.0)
+
+audio.export("asd.mp3", format='mp3')
