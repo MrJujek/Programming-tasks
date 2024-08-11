@@ -1,0 +1,53 @@
+PI
+	7 czujnik temperatura
+	1 vcc
+	9 gnd
+
+	6 ground adc
+	4 5v adc
+	3 green adc
+	5 blue adc
+	
+	16 in1 relay
+	18 in2
+	22 in3
+	37 in4
+	2 vcc relay + vcc fan
+	14 gnd relay + gnd fan
+	34 gnd relay between resistors
+	
+	20 gnd batteries
+	
+	39 gnd switch
+-----------------------------------------
+SWITCH
+	up vcc batery
+	middle adc + resistors
+	down ground (pi 39)
+-----------------------------------------
+RELAY
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
