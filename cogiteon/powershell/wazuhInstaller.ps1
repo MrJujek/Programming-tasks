@@ -1,6 +1,6 @@
 # Variables
 $wazuhInstallerUrl = "https://packages.wazuh.com/4.x/windows/wazuh-agent-4.8.1-1.msi"
-$wazuhInstallerPath = "$env:USERPROFILE\wazuh-agent.msi"
+$wazuhInstallerPath = "C:\Program Files (x86)\wazuh-agent.msi"
 $ossecConfPath = "C:\Program Files (x86)\ossec-agent\ossec.conf"
 $managerIp = "192.168.22.21"
 
@@ -16,7 +16,7 @@ else {
 }
 
 # Install Wazuh agent
-Start-Process msiexec.exe -ArgumentList "/i", $wazuhInstallerPath, "/quiet", "/norestart" -Wait
+Start-Process msiexec.exe -ArgumentList "/i", `"$wazuhInstallerPath`", "/quiet", "/norestart" -Wait
 
 # Configure ossec.conf
 $ossecConfContent = Get-Content $ossecConfPath
@@ -55,6 +55,7 @@ else {
 }
 
 # Restart WazuhSvc
-Restart-Service -Name "WazuhSvc"
+Restart-Service -Name "WazuhSvc" -Force
+Write-Host "Everything set."
 
 # Read-Host -Prompt "Press Enter to end script"
