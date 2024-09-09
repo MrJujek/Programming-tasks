@@ -1,3 +1,12 @@
+$service = Get-Service -Name "WazuhSvc" -ErrorAction SilentlyContinue
+if ($service -and $service.Status -eq 'Running') {
+  Write-Host "WazuhSvc is running."
+  exit 0
+}
+else {
+  Write-Host "WazuhSvc is not installed."
+}
+
 # Variables
 $wazuhInstallerUrl = "https://packages.wazuh.com/4.x/windows/wazuh-agent-4.8.1-1.msi"
 $wazuhInstallerPath = "C:\Program Files (x86)\wazuh-agent.msi"
@@ -44,7 +53,6 @@ else {
 }
 
 # Check if WazuhSvc is running
-$service = Get-Service -Name "WazuhSvc"
 if ($service.Status -eq 'Stopped') {
   # Start the service
   Start-Service -Name "WazuhSvc"
@@ -59,3 +67,5 @@ Restart-Service -Name "WazuhSvc" -Force
 Write-Host "Everything set."
 
 # Read-Host -Prompt "Press Enter to end script"
+
+exit 0
