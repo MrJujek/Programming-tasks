@@ -1,10 +1,13 @@
 # Function for ossec.conf configuration
-function configureOssecConf {  
-  $serverIP = 192.168.22.21
+function configureOssecConf {
+  # Variables
+  $ossecConfPath = "C:\Program Files (x86)\ossec-agent\ossec.conf"
+  $serverIP = "192.168.22.21"
 
   # Configure ossec.conf
   $ossecConfContent = Get-Content $ossecConfPath
   $ossecConfContent = $ossecConfContent -replace "<address>.*</address>", "<address>$serverIP</address>"
+  $ossecConfContent | Set-Content $ossecConfPath
 
   # Set <localfile> section
   $localfileSection = @"
@@ -17,14 +20,14 @@ function configureOssecConf {
   # Check if <localfile> is set
   $rawOssecConfContent = Get-Content -Path $ossecConfPath -Raw
   if (-not ($rawOssecConfContent -like "*$localfileSection*")) {
-      # Add <localfile> to ossec.conf
-      $ossecConfContent = $ossecConfContent -replace "</ossec_config>", "$localfileSection`n</ossec_config>"
-      $ossecConfContent | Set-Content $ossecConfPath
+    # Add <localfile> to ossec.conf
+    $ossecConfContent = $ossecConfContent -replace "</ossec_config>", "$localfileSection`n</ossec_config>"
+    $ossecConfContent | Set-Content $ossecConfPath
 
-      return "$ossecConfPath is being configured."
+    return "$ossecConfPath is being configured."
   }
   else {
-      return "$ossecConfPath is set."
+    return "$ossecConfPath is set."
   }
 }
 
@@ -42,9 +45,8 @@ else {
 }
 
 # Variables
-$wazuhInstallerUrl = "https://packages.wazuh.com/4.x/windows/wazuh-agent-4.8.1-1.msi"
+$wazuhInstallerUrl = "\\cogi.ad\SYSVOL\Cogi.ad\wazuh-agent-4.8.1-1.msi"
 $wazuhInstallerPath = "C:\Program Files (x86)\wazuh-agent.msi"
-$ossecConfPath = "C:\Program Files (x86)\ossec-agent\ossec.conf"
 
 # Check if Wazuh installer is installed
 if (-not (Test-Path -Path $wazuhInstallerPath)) {
@@ -58,7 +60,6 @@ else {
 }
 
 # Install Wazuh agent
-Write-Host 
 Start-Process msiexec.exe -ArgumentList "/i", `"$wazuhInstallerPath`", "/quiet", "/norestart" -Wait
 
 configureOssecConf
