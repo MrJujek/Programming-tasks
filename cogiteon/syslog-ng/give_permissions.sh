@@ -2,7 +2,7 @@
 
 group="logi"
 user="logi"
-folders=("wazuh" "fortigate")
+folders=("wazuh" "fortigate" "wifi")
 
 for folder in "${folders[@]}"; do
         path="/var/log/$folder"
