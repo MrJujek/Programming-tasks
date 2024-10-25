@@ -1,7 +1,7 @@
 #!/bin/bash
 
 today=$(date +%Y_%m_%d)
-folders=("wazuh" "fortigate" "wifi")
+folders=("wazuh" "fortigate" "wifi" "macierz")
 
 for folder in "${folders[@]}"; do
         sudo mkdir -p "/var/log/backups/$folder"
