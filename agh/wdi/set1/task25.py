@@ -13,16 +13,16 @@ def moje(n):
                 return True
     return False
 
-# def is_fib(n, a, b):
-#     while a <= n:
-#         if a == n:
-#             return True
+def is_fib(n, a, b):
+    while a <= n:
+        if a == n:
+            return True
         
-#         a, b = a, a+b
+        a, b = b, a+b
 
-#     return False
+    return False
 
-def rozw(n):
+def created_by_fib_numbers(n):
     a = b = 1
 
     while b*b <= n:
@@ -33,4 +33,4 @@ def rozw(n):
 
     return False
 
-print(rozw(n))
+print(created_by_fib_numbers(n))
