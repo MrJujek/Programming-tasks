@@ -6,10 +6,13 @@ def sequence(T):
 
             tab1 = [T[z] for z in range(i, i + j)]
             tab2 = [T[z] for z in range(i+j, i + j + j)]
-            mnoznik = tab1[0] / tab2[0]
+            
+            mnoznik = tab2[0] / tab1[0]
+
             for z in range(1, len(tab1)):
-                if tab1[z] / tab2[z] != mnoznik:
+                if tab2[z] / tab1[z] != mnoznik:
                     dobry_ciag = False
+                    break
             
             if dobry_ciag:
                 return [i, i+j-1]
