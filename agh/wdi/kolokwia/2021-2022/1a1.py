@@ -1,11 +1,12 @@
-def czy_piersza(liczba):
-    if liczba <= 2:
-        return True
+def id_prime(liczba):
+    if liczba <= 1:
+        return False
     
-    for i in range(2, liczba):
+    i = 2
+    while i*i <= liczba:
         if liczba % i == 0:
             return False
-        
+        i+=1
     return True
 
 k = int(input("k:"))
@@ -46,7 +47,7 @@ for i in range(len(tab) + 1):
                 do_sprawdzenia += liczba[z] * mnoznik
                 mnoznik *= 10
 
-            if czy_piersza(do_sprawdzenia):
+            if id_prime(do_sprawdzenia):
                 najwieksza = max(najwieksza, do_sprawdzenia)
 
 print(najwieksza)

@@ -13,9 +13,6 @@ def sequence(T):
             
             if dobry_ciag:
                 return [i, i+j-1]
-            
-    
-
 
 tab = [2,5,7,3,2,3,5,7,6,9,15,21,17,19,23,2,6,4,8,3,5,7,1,3,2]
 print(sequence(tab))
