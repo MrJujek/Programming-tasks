@@ -27,6 +27,8 @@ while True:
         continue
     break
 
+# 5 0.5 0.1 0.5 10 1000
+
 t = np.linspace(0, x, z)
 
 E=np.exp(-y*t)
@@ -43,12 +45,6 @@ plt.xlabel('Czas (t)')
 plt.ylabel('Amplituda (A)')
 plt.title('y=A*sin(2π*t*f)*e^(-y*t)+aN')
 plt.show()
-
-headline1 = t
-data1 = t
-Y = real_sin
-headline2 = real_sin
-data2 = real_sin
 
 decision = input("Czy chcesz zapisać dane do pliku? Wpisz tak lub nie:")
 if decision.lower() == 'tak':
