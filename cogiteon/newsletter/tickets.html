@@ -1,0 +1,200 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tickets</title>
+<style type="text/css">
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .top-container {
+    display: flex;
+    height: 100px;
+    max-width: 800px;
+
+    .top-spacer {
+      width: 14%;
+    }
+
+    #top-triangles {
+      width: 86%;
+      clip-path: polygon(100% 100%, 100% 0%, 0% 0%);
+      display: flex;
+
+      div {
+        width: 25%;
+        height: 100%;
+      }
+
+      #top-part1 {
+        clip-path: polygon(80% 20%, 100% 0, 0 0);
+        background-color: #39b643;
+        background-image: url("./assets/BLI_0176\ —\ kopia.JPG");
+        background-size: cover;
+      }
+
+      #top-part2 {
+        clip-path: polygon(25% 0, 80% 0, 100% 50%, 0 25%);
+        background-color: #2484b1;
+        background-image: url("./assets/krakow-cogiteon-\(fot-piotr-krajewski\)-LQ_035_D_3K2A2398.jpg");
+        background-size: cover;
+      }
+
+      #top-part3 {
+        clip-path: polygon(0 0, 100% 0, 100% 75%, 20% 55%);
+        background-color: #209b31;
+        background-image: url("./assets/Lab\ Przyrody-47.jpg");
+        background-size: cover;
+      }
+
+      #top-part4 {
+        clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 20% 80%);
+        background-color: #2c71aa;
+        background-image: url("./assets/35.JPG");
+        background-size: cover;
+      }
+    }
+
+    .logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 200px;
+      background-image: url("./assets/cogiteon_logo-MCNC-IKWM_rgb_linear_black.png");
+      background-size: contain;
+      background-repeat: space;
+    }
+  }
+
+  .middle-container {
+    max-width: 800px;
+    padding: 20px;
+
+    .content {
+      padding: 50px;
+    }
+
+    .content h2 {
+      font-size: 32px;
+      color: #333333;
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      font-size: 18px;
+      color: #333333;
+    }
+
+    .content .small-gray p {
+      font-size: 14px !important;
+      color: #4b4b4b !important;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 30px;
+      background-color: #c13b32;
+      color: #ffffff;
+      font-size: 18px;
+      height: fit-content;
+      width: fit-content;
+      padding: 15px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+
+  .bottom-container {
+    max-width: 800px;
+    background-color: #fbca30;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .left {
+      margin: 20px 0px 20px 40px;
+      width: 25%;
+      height: 100px;
+      background-image: url("./assets/cogiteon_logo-MCNC-IKWM_rgb_linear_black.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .right {
+      width: 75%;
+      margin: 40px;
+    }
+  }
+</style>
+<div class="container">
+  <div class="top-container">
+    <div class="top-spacer"></div>
+    <div id="top-triangles">
+      <div id="top-part1"></div>
+      <div id="top-part2"></div>
+      <div id="top-part3"></div>
+      <div id="top-part4"></div>
+    </div>
+    <div class="logo"></div>
+  </div>
+
+  <div class="middle-container">
+    <div class="content">
+      <p>Szanowny Kliencie,</p>
+      <p>
+        Dziękujemy za złożenie zamówienia<br />
+        Informujemy że zamówienie zostało zarejestowane pod numerem
+        <b>567398221</b>.
+      </p>
+      <p>
+        Prosimy o dokonanie płatnoścni w terminie do <b>21.09.2025</b>.<br />
+        W przypadku niedokonania opłaty w tym terminie, zamówienie zostanie
+        anulowane.<br />Jeśli zamówienie dotyczy bilerów, po anulowaniu
+        zamówienia trafią one ponownie do puli biletów wolnych.
+      </p>
+
+      <p>
+        Jeżeli nie dokonali Państwo dotychczas płatności, można to zrobić
+        klikając w poniższy link: <br /><a href="cogiteon.pl"
+          >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.</a
+        ><br />
+      </p>
+      <p>
+        W załączeniu znajduje się dokument potwierdzający przyjęcie zamówienia w
+        formacie PDF.
+      </p>
+      <div class="small-gray">
+        <p>
+          Wiadomość została wysłana na podany przez Państwa e-mail. Pozyskane
+          dane osobowe są wykorzystywane do rezerwacji. Szczegóły przetwarzania
+          znajdują się na naszej stronie w zakładce<br />
+          <a href="https://cogiteon.pl/informacje_prawne"
+            >https://cogiteon.pl/informacje_prawne</a
+          >.<br />
+          Jeśli nie jesteś odbiorcą tej wiadomości poinformuj nas o tym,
+          usuniemy Twój adres z naszej bazy danych.
+        </p>
+        <p>
+          WIADOMOŚĆ WYSŁANA AUTOMATYCZNIE-PROSIMY NA NIĄ NIE ODPOWIADAĆ.<br />
+          SKONTAKTUJ SIĘ Z NAMI POD ADRESEM SKLEP@COGITEON.PL
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-container">
+    <div class="left"></div>
+    <div class="right">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
+      tempore, ut vitae cum, repellendus vero doloremque in voluptatem
+      consequuntur est quaerat, officiis facilis quidem minus harum inventore
+      perferendis quibusdam aperiam.
+    </div>
+  </div>
+</div>
