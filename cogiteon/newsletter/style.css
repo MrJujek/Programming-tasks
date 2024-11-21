@@ -40,26 +40,28 @@ body {
     #top-part1 {
       clip-path: polygon(80% 20%, 100% 0, 0 0);
       background-color: #39b643;
+      background-image: url("./assets/BLI_0176\ —\ kopia.JPG");
+      background-size: cover;
     }
 
     #top-part2 {
       clip-path: polygon(25% 0, 80% 0, 100% 50%, 0 25%);
       background-color: #2484b1;
-      background-image: url("./lake.jpg");
+      background-image: url("./assets/krakow-cogiteon-\(fot-piotr-krajewski\)-LQ_035_D_3K2A2398.jpg");
       background-size: cover;
     }
 
     #top-part3 {
       clip-path: polygon(0 0, 100% 0, 100% 75%, 20% 55%);
       background-color: #209b31;
-      background-image: url("./river.jpg");
+      background-image: url("./assets/Lab\ Przyrody-47.jpg");
       background-size: cover;
     }
 
     #top-part4 {
       clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 20% 80%);
       background-color: #2c71aa;
-      background-image: url("./mountain.jpg");
+      background-image: url("./assets/35.JPG");
       background-size: cover;
     }
   }
@@ -71,6 +73,7 @@ body {
 
 .middle-container {
   padding: 20px;
+  text-align: center;
 
   .content {
     padding: 50px;
