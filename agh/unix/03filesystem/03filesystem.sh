@@ -16,6 +16,7 @@ find ~ -type f -exec du -h {} + | sort -rh | head -n 1
 find ~ -maxdepth 2 -type f -exec du -h {} + | sort -rh | head -n 1
 #8
 find ~ -maxdepth 2 -type f -exec stat --format "%b %n" {} + | sort -nr | head -n 1
+ls -lahR $PWD | sort -k5 -rh | head -n 1 | awk '{print $8}'
 #9
 find /usr/include -type f -name "c*" -exec ls -lh {} +
 #10
