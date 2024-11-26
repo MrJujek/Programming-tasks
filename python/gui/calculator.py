@@ -3,24 +3,18 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QPush
 from PyQt5.QtWidgets import QMessageBox
 import math
 
-
 class Calculator(QWidget):
     def __init__(self):
         super().__init__()
-# do tego momentu tak jak u ciebie
+        self.initUI()
 
-        self.initUI() # tutaj wywołujemy metode z linijki 12
-
-    def initUI(self): # metoda inicjalizująca interfejs
-
+    def initUI(self):
         self.setWindowTitle('Kalkulator')
         self.setGeometry(100, 100, 300, 400)
 
         self.layout = QVBoxLayout()
         self.setLayout(self.layout)
-        # do tego momentu miałaś podobnie
 
-        # od tego momentu robimy guziki
         self.textbox = QLineEdit()
         self.layout.addWidget(self.textbox)
 
@@ -103,45 +97,42 @@ class Calculator(QWidget):
         btnSqrt.clicked.connect(self.on_click)
         self.buttons.addWidget(btnSqrt, 4, 2)
 
+        btnDel = QPushButton('Del')
+        btnDel.clicked.connect(self.delete_last)
+        self.buttons.addWidget(btnDel, 4, 3)
+
     def clear_textbox(self):
         self.textbox.clear()
-        # koniec robienia guzików
 
-    def on_click(self): # metoda obsługująca kliknięcie w guzik
-        sender = self.sender() # pobieramy obiekt, który wywołał zdarzenie
-        text = sender.text() # pobieramy tekst z guzika
-        print(text) # wyświetlamy tekst z guzika w konsoli
+    def delete_last(self):
+        self.textbox.setText(self.textbox.text()[:-1])
 
-        if text == '=': # jeśli tekst to '=' to wykonujemy obliczenia
+    def on_click(self):
+        sender = self.sender()
+        text = sender.text()
+
+        if text == '=':
             try:
-                poprawiony_text = self.textbox.text().replace('^', '**').replace('√', 'math.sqrt(') # zamieniamy znaki na odpowiednie operatory
-                if 'math.sqrt(' in poprawiony_text:
-                    poprawiony_text += ')'
-                result = eval(poprawiony_text)
-                # wyrażenie eval wykonuje kod pythona zapisany w postaci stringa
-                # np. eval('2 + 2') zwróci 4
-
-                print(result) # wyświetlamy wynik w konsoli
-
+                fixed_text = self.textbox.text().replace('^', '**').replace('√', 'math.sqrt(')
+                if 'math.sqrt(' in fixed_text:
+                    fixed_text += ')'
+                result = eval(fixed_text)
                 self.textbox.setText(str(result))
 
-            except Exception as e: # jeśli wystąpi błąd wyświetlamy komunikat 'Error'
-                # np. jeśli użytkownik wpisze '2 + abc'           
+            except Exception as e:          
                 error_dialog = QMessageBox()
                 error_dialog.setIcon(QMessageBox.Critical)
                 error_dialog.setText('Error')
                 if str(e) == 'math domain error':
-                    error_dialog.setInformativeText('Nie można wyciągnąć pierwiastka z liczby ujemnej')
+                    error_dialog.setInformativeText('Cannot take square root of negative number')
                 else: 
                     error_dialog.setInformativeText(str(e))
                 error_dialog.setWindowTitle('Error')
                 error_dialog.exec_()
 
-        else: # w przeciwnym wypadku dodajemy tekst do wyświetlacza
+        else:
             self.textbox.setText(self.textbox.text() + text)
 
-
-# co do tego to ci zdjęcie wysłałem
 app = QApplication(sys.argv)
 calculator = Calculator()
 calculator.show()
