@@ -30,7 +30,7 @@ if [ $1 ]; then
 else
     read -p "Podaj login: " login
 fi
-if [[ ! $login =~ ^[a-zA-Z0-9]+$]]; then
+if [[ ! $login =~ ^[a-zA-Z0-9]+$ ]]; then
     echo "Niepoprawny login"
     exit 2
 fi
